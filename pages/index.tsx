@@ -1,7 +1,9 @@
-import type { NextPage } from "next";
 import { useState } from "react";
+import type { NextPage } from "next";
 import Head from "next/head";
+
 import styled from "styled-components";
+
 import MainBoard from "../components/MainBoard";
 import SideMenu from "../components/SideMenu";
 
