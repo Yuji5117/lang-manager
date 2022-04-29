@@ -33,8 +33,10 @@ function MainBoard({ filterValue }: PropsType) {
 
   const fetchVocabularies = async () => {
     const res = await axios.get(
-      `${process.env.REACT_APP_API_ENDPOINT}/vocabularies`
+      // `${process.env.REACT_APP_API_ENDPOINT}/vocabularies`
+      "/api/vocabularies"
     );
+    console.log(res);
     setLangWords(res.data);
   };
 
@@ -45,9 +47,16 @@ function MainBoard({ filterValue }: PropsType) {
   const addVocabulary: SubmitHandler<IFormInputs> = async (
     data: IFormInputs
   ) => {
-    await axios.post(`${process.env.REACT_APP_API_ENDPOINT}/vocabularies`, {
+    // await axios.post(`${process.env.REACT_APP_API_ENDPOINT}/vocabularies`, {
+    await axios.post(`/api/vocabulary`, {
       id: null,
-      word: data.vocab,
+      // word: data.vocab,
+      word: {
+        id: 1,
+        word: "English",
+        translatedWord: "英語",
+        image: "test.jpg",
+      },
       translatedWord: data.translatedVocab,
       image: "test.jpg",
     });

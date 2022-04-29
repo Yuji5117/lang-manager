@@ -17,15 +17,17 @@ interface PrposType {
 }
 
 const CardList = (props: PrposType) => {
-  const filterdCards: Vocabulary[] = props.langWords.filter(
-    (langWord) =>
-      !props.filterValue ||
-      langWord.word.includes(props.filterValue) ||
-      langWord.translatedWord.includes(props.filterValue)
-  );
+  // if (props.langWords.length) {
+  // const filterdCards: Vocabulary[] = props.langWords.filter(
+  //   (langWord) =>
+  //     !props.filterValue ||
+  //     langWord.word.includes(props.filterValue) ||
+  //     langWord.translatedWord.includes(props.filterValue)
+  // );
+  // }
   return (
     <Grid container spacing={4}>
-      {filterdCards.map((langWord) => (
+      {props.langWords.map((langWord) => (
         <Grid item key={langWord.id}>
           <VocabularyCard
             langWord={langWord}

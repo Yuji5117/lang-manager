@@ -3,7 +3,13 @@ import { rest } from "msw";
 import { vocabularies } from "./data";
 
 export const handlers = [
-  rest.get("/vocabularies", (req, res, ctx) => {
+  // rest.post("/")
+
+  rest.get("/api/vocabularies", (_, res, ctx) => {
     return res(ctx.status(200), ctx.json(vocabularies));
+  }),
+
+  rest.post("/api/vocabulary", (_, res, ctx) => {
+    return res(ctx.status(200));
   }),
 ];
