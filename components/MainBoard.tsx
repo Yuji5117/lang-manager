@@ -5,6 +5,7 @@ import styled from "styled-components";
 import AddVocabularyModal from "./AddVocabularyModal";
 import CardList from "./CardList";
 import axios from "axios";
+import SearchImage from "./SearchImage";
 
 interface IFormInputs {
   vocab: string;
@@ -88,6 +89,7 @@ function MainBoard({ filterValue }: PropsType) {
             />
           </CardListWrapper>
         </MainArea>
+        <SearchImage />
       </Container>
     </Wrapper>
   );

@@ -71,7 +71,6 @@ function AddVocabularyModal(props: PropsType) {
             name="imageUrl"
             onChange={onHandleChange}
           />
-          <button>Serch images</button>
           <img src={props.imageUrl} width="300" />
           <ButtonWrapper>
             <Button variant="outlined" onClick={props.handleModal}>
