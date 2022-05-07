@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { useForm, Controller } from "react-hook-form";
 
 import { TextField, Button } from "@mui/material";
+import SearchImage from "./SearchImage";
 
 interface IFormInputs {
   vocab: string;
@@ -71,6 +72,7 @@ function AddVocabularyModal(props: PropsType) {
             name="imageUrl"
             onChange={onHandleChange}
           />
+          <SearchImage setImageUrl={props.setImageUrl} />
           <img src={props.imageUrl} width="300" />
           <ButtonWrapper>
             <Button variant="outlined" onClick={props.handleModal}>
