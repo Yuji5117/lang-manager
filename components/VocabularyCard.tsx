@@ -40,7 +40,7 @@ const VocabularyCard: React.FC<PropsType> = (props) => {
 
   const editVocabulary = async (id: number, vocab: UpdatedVocab) => {
     await axios.put(
-      `${process.env.REACT_APP_API_ENDPOINT}/vocabularies/${id}`,
+      `${process.env.NEXT_PUBLIC_API_ENDPOINT}/vocabularies/${id}`,
       {
         word: vocab.vocab,
         translatedWord: vocab.translatedVocab,
@@ -57,7 +57,7 @@ const VocabularyCard: React.FC<PropsType> = (props) => {
         <CardMedia
           component="img"
           height="140"
-          image={`${process.env.PUBLIC_URL}/${props.langWord.image}`}
+          image={`${props.langWord.image}`}
           alt=""
         />
         <CardContent>
