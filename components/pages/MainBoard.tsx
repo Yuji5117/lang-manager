@@ -50,7 +50,7 @@ function MainBoard({ filterValue }: PropsType) {
       id: null,
       word: data.vocab,
       translatedWord: data.translatedVocab,
-      image: imageUrl,
+      image: imageUrl || "no_image.png",
     });
     handleModal();
     fetchVocabularies();
