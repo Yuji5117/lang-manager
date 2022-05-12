@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, { useState } from "react";
 
-import SearchImageForm from "./SearchImageForm";
-import SearchImageResults from "./SearchImageResults";
+import SearchImageForm from "../molecules/SearchImageForm";
+import SearchImageResults from "../molecules/SearchImageResults";
 
 interface PropsType {
   setImageUrl: React.Dispatch<React.SetStateAction<any>>;

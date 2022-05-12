@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import VocabularyForm from "./VocabularyForm";
+import VocabularyForm from "../molecules/VocabularyForm";
 
 interface IFormInputs {
   vocab: string;

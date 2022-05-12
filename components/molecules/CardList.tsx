@@ -1,4 +1,4 @@
-import VocabularyCard from "./VocabularyCard";
+import VocabularyCard from "../organisms/VocabularyCard";
 
 import Grid from "@mui/material/Grid";
 

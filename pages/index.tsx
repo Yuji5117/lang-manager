@@ -4,8 +4,8 @@ import Head from "next/head";
 
 import styled from "styled-components";
 
-import MainBoard from "../components/MainBoard";
-import SideMenu from "../components/SideMenu";
+import MainBoard from "../components/pages/MainBoard";
+import SideMenu from "../components/organisms/SideMenu";
 
 const Home: NextPage = () => {
   const [filterValue, setFilterValue] = useState<string>("");
