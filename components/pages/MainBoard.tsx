@@ -25,7 +25,7 @@ interface PropsType {
 function MainBoard({ filterValue }: PropsType) {
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [langWords, setLangWords] = useState<Vocabulary[]>([]);
-  const [imageUrl, setImageUrl] = useState<any>();
+  const [imageUrl, setImageUrl] = useState<string>("");
 
   useEffect(() => {
     fetchVocabularies();
@@ -39,6 +39,7 @@ function MainBoard({ filterValue }: PropsType) {
   };
 
   const handleModal = () => {
+    setImageUrl("");
     setOpenModal(!openModal);
   };
 
