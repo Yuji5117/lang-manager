@@ -18,8 +18,8 @@ const SearchImageResults = ({ photo, setImageUrl, setPhotos }: PropsType) => {
         <img
           src={photo.urls.regular}
           alt={photo.alt_description}
-          width="300"
-          height="200"
+          width="120"
+          height="65"
         />
       </button>
     </>

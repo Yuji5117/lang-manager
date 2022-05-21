@@ -5,6 +5,7 @@ import styled from "styled-components";
 import AddVocabularyModal from "../organisms/AddVocabularyModal";
 import CardList from "../molecules/CardList";
 import axios from "axios";
+import SearchImageModal from "../organisms/SearchImageModal";
 
 interface IFormInputs {
   vocab: string;
@@ -103,6 +104,8 @@ function MainBoard({ filterValue }: PropsType) {
               filterValue={filterValue}
             />
           </CardListWrapper>
+
+          <SearchImageModal setImageUrl={setImageUrl} />
         </MainArea>
       </Container>
     </Wrapper>
