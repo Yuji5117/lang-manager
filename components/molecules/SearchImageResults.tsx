@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 
 interface PropsType {
   photo: any;
@@ -15,7 +16,7 @@ const SearchImageResults = ({ photo, setImageUrl, setPhotos }: PropsType) => {
   return (
     <>
       <button onClick={(e: any) => onHandleClick(e, photo.urls.regular)}>
-        <img
+        <Image
           src={photo.urls.regular}
           alt={photo.alt_description}
           width="120"
@@ -27,3 +28,7 @@ const SearchImageResults = ({ photo, setImageUrl, setPhotos }: PropsType) => {
 };
 
 export default SearchImageResults;
+
+const Image = styled.img`
+  object-fit: cover;
+`;
