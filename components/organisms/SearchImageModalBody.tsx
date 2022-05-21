@@ -32,7 +32,18 @@ const SearchImageModalBody = ({ isActive, setImageUrl }: PropsType) => {
 
   return (
     <Wrapper>
-      {isActive === 1 && <p>upload</p>}
+      {isActive === 1 && (
+        <>
+          <ImageLabel htmlFor="upload-image">Choose an Image</ImageLabel>
+          <ImageInput
+            id="upload-image"
+            type="file"
+            accept="image/*"
+            name="imageUrl"
+            // onChange={onHandleChange}
+          />
+        </>
+      )}
       {isActive === 2 && (
         <>
           <SearchImageForm getPhotos={getPhotos} />
@@ -60,6 +71,7 @@ const Wrapper = styled.div`
   width: 90%;
   margin: auto;
   overflow: scroll;
+  text-align: center;
 `;
 
 const ResultImageList = styled.ul`
@@ -67,4 +79,22 @@ const ResultImageList = styled.ul`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   column-gap: 5px;
+`;
+
+const ImageInput = styled.input``;
+
+const ImageLabel = styled.label`
+  display: inline-block;
+  color: #ffffff;
+  background-color: #1565c0;
+  text-align: center;
+  font-size: 14px;
+  padding: 8px 80px;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: 0.3s;
+
+  :hover {
+    opacity: 0.8;
+  }
 `;
