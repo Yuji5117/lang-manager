@@ -14,7 +14,6 @@ interface PrposType {
   deleteVocabulary: (id: number) => void;
   fetchVocabularies: () => void;
   filterValue: string;
-  isInsertMode: boolean;
 }
 
 const CardList = (props: PrposType) => {
