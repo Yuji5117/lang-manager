@@ -13,10 +13,7 @@ const SearchImageModal = ({ setImageUrl }: PropsType) => {
   return (
     <ModalWrapper>
       <Modal>
-        {/* headertab */}
         <SearchImageModalHeader setIsActive={setIsActive} />
-
-        {/* body */}
         <SearchImageModalBody isActive={isActive} setImageUrl={setImageUrl} />
       </Modal>
     </ModalWrapper>
@@ -46,5 +43,4 @@ const Modal = styled.div`
 
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
 `;

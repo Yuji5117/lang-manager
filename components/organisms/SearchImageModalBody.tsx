@@ -11,15 +11,23 @@ interface PropsType {
 
 const SearchImageModalBody = ({ isActive, setImageUrl }: PropsType) => {
   const [photos, setPhotos] = useState<any>([]);
+  let pageCount = 0;
+  let tmpPhotos: any = [];
 
   const getPhotos = async (e: any) => {
     e.preventDefault();
 
     const res = await axios.get(
-      `https://api.unsplash.com/search/photos?query=${e.target.value}&client_id=${process.env.NEXT_PUBLIC_API_UNSPLASH_KEY}`
+      `https://api.unsplash.com/search/photos?page=${pageCount}&query=${e.target.value}&client_id=${process.env.NEXT_PUBLIC_API_UNSPLASH_KEY}`
     );
-    console.log(res.data.results);
-    setPhotos(res.data.results);
+
+    tmpPhotos = tmpPhotos.concat(res.data.results);
+    if (pageCount === 4 || pageCount === res.data.total_pages) {
+      setPhotos(tmpPhotos);
+    } else {
+      pageCount++;
+      await getPhotos(e);
+    }
   };
 
   return (
@@ -51,9 +59,7 @@ const Wrapper = styled.div`
   height: 85%;
   width: 90%;
   margin: auto;
-  /* margin-left: auto;
-  margin-right: auto; */
-  /* height: 50px; */
+  overflow: scroll;
 `;
 
 const ResultImageList = styled.ul`
