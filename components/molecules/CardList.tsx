@@ -1,4 +1,4 @@
-import VocabularyCard from "../organisms/VocabularyCard";
+import VocabularyCard from "./VocabularyCard";
 
 import Grid from "@mui/material/Grid";
 
@@ -14,6 +14,7 @@ interface PrposType {
   deleteVocabulary: (id: number) => void;
   fetchVocabularies: () => void;
   filterValue: string;
+  isInsertMode: boolean;
 }
 
 const CardList = (props: PrposType) => {

@@ -35,6 +35,10 @@ function MainBoard({ filterValue }: PropsType) {
     const res = await axios.get(
       `${process.env.NEXT_PUBLIC_API_ENDPOINT}/vocabularies`
     );
+
+    res.data.sort((a: any, b: any) => {
+      return b.id - a.id;
+    });
     setLangWords(res.data);
   };
 
@@ -43,16 +47,27 @@ function MainBoard({ filterValue }: PropsType) {
     setOpenModal(!openModal);
   };
 
-  const addVocabulary: SubmitHandler<IFormInputs> = async (
-    data: IFormInputs
-  ) => {
+  // モーダル用の実装
+  // const addVocabulary: SubmitHandler<IFormInputs> = async (
+  //   data: IFormInputs
+  // ) => {
+  //   await axios.post(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/vocabularies`, {
+  //     id: null,
+  //     word: data.vocab,
+  //     translatedWord: data.translatedVocab,
+  //     image: imageUrl || "no_image.png",
+  //   });
+  //   handleModal();
+  //   fetchVocabularies();
+  // };
+
+  const addVocabulary = async () => {
     await axios.post(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/vocabularies`, {
       id: null,
-      word: data.vocab,
-      translatedWord: data.translatedVocab,
-      image: imageUrl || "no_image.png",
+      word: "Word",
+      translatedWord: "単語",
+      image: "no_image.png",
     });
-    handleModal();
     fetchVocabularies();
   };
 
@@ -67,11 +82,11 @@ function MainBoard({ filterValue }: PropsType) {
     <Wrapper>
       <Container>
         <MainArea>
-          <ButtonWrapper>
-            <Button variant="contained" onClick={handleModal}>
+          <Form>
+            <Button variant="contained" onClick={addVocabulary}>
               Add Vocabulary
             </Button>
-          </ButtonWrapper>
+          </Form>
           {openModal && (
             <AddVocabularyModal
               addVocabulary={addVocabulary}
@@ -112,7 +127,7 @@ const MainArea = styled.div``;
 
 const FormArea = styled.div``;
 
-const ButtonWrapper = styled.div`
+const Form = styled.div`
   margin-bottom: 30px;
 `;
 
