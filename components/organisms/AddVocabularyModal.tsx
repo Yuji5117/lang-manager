@@ -38,6 +38,14 @@ function AddVocabularyModal(props: PropsType) {
     <ModalWrapper onClick={props.handleModal}>
       <Modal onClick={(event) => event.stopPropagation()}>
         <Form>
+          <ImageInput
+            type="file"
+            accept="image/*"
+            name="imageUrl"
+            onChange={onHandleChange}
+          />
+          <SearchImage setImageUrl={props.setImageUrl} />
+          <img src={props.imageUrl} width="300" />
           <Controller
             name="vocab"
             control={control}
@@ -66,14 +74,6 @@ function AddVocabularyModal(props: PropsType) {
               />
             )}
           />
-          <ImageInput
-            type="file"
-            accept="image/*"
-            name="imageUrl"
-            onChange={onHandleChange}
-          />
-          <SearchImage setImageUrl={props.setImageUrl} />
-          <img src={props.imageUrl} width="300" />
           <ButtonWrapper>
             <Button variant="outlined" onClick={props.handleModal}>
               cancel
