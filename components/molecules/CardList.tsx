@@ -16,7 +16,12 @@ interface PrposType {
   filterValue: string;
 }
 
-const CardList = (props: PrposType) => {
+const CardList = ({
+  langWords,
+  deleteVocabulary,
+  fetchVocabularies,
+  filterValue,
+}: PrposType) => {
   // if (props.langWords.length) {
   // const filterdCards: Vocabulary[] = props.langWords.filter(
   //   (langWord) =>
@@ -27,12 +32,12 @@ const CardList = (props: PrposType) => {
   // }
   return (
     <Grid container spacing={4}>
-      {props.langWords.map((langWord) => (
+      {langWords.map((langWord) => (
         <Grid item key={langWord.id}>
           <VocabularyCard
             langWord={langWord}
-            deleteVocabulary={props.deleteVocabulary}
-            fetchVocabularies={props.fetchVocabularies}
+            deleteVocabulary={deleteVocabulary}
+            fetchVocabularies={fetchVocabularies}
           />
         </Grid>
       ))}

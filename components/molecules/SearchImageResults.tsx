@@ -9,18 +9,7 @@ interface PropsType {
   editImage: any;
 }
 
-const SearchImageResults = ({
-  vocabulary,
-  photo,
-  setImageUrl,
-  setPhotos,
-  editImage,
-}: PropsType) => {
-  // const onHandleClick = (vocabId: number, imageUrl: string) => {
-  //   setImageUrl(imageUrl);
-  //   setPhotos([]);
-  // };
-
+const SearchImageResults = ({ vocabulary, photo, editImage }: PropsType) => {
   return (
     <>
       <button onClick={(e) => editImage(vocabulary, photo.urls.regular)}>

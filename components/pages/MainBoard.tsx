@@ -1,16 +1,8 @@
 import { Button } from "@mui/material";
 import { useState, useEffect } from "react";
-import { SubmitHandler } from "react-hook-form";
 import styled from "styled-components";
-import AddVocabularyModal from "../organisms/AddVocabularyModal";
 import CardList from "../molecules/CardList";
 import axios from "axios";
-import SearchImageModal from "../organisms/SearchImageModal";
-
-interface IFormInputs {
-  vocab: string;
-  translatedVocab: string;
-}
 
 interface Vocabulary {
   id: number | null;
@@ -24,7 +16,6 @@ interface PropsType {
 }
 
 function MainBoard({ filterValue }: PropsType) {
-  // const [openModal, setOpenModal] = useState<boolean>(false);
   const [langWords, setLangWords] = useState<Vocabulary[]>([]);
 
   useEffect(() => {
@@ -41,25 +32,6 @@ function MainBoard({ filterValue }: PropsType) {
     });
     setLangWords(res.data);
   };
-
-  // const handleModal = () => {
-  //   setImageUrl("");
-  //   setOpenModal(!openModal);
-  // };
-
-  // モーダル用の実装
-  // const addVocabulary: SubmitHandler<IFormInputs> = async (
-  //   data: IFormInputs
-  // ) => {
-  //   await axios.post(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/vocabularies`, {
-  //     id: null,
-  //     word: data.vocab,
-  //     translatedWord: data.translatedVocab,
-  //     image: imageUrl || "no_image.png",
-  //   });
-  //   handleModal();
-  //   fetchVocabularies();
-  // };
 
   const addVocabulary = async () => {
     await axios.post(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/vocabularies`, {
@@ -87,14 +59,6 @@ function MainBoard({ filterValue }: PropsType) {
               Add Vocabulary
             </Button>
           </Form>
-          {/* {openModal && (
-            <AddVocabularyModal
-              addVocabulary={addVocabulary}
-              handleModal={handleModal}
-              imageUrl={imageUrl}
-              setImageUrl={setImageUrl}
-            />
-          )} */}
           <CardListWrapper>
             <CardList
               langWords={langWords}
@@ -124,8 +88,6 @@ const Container = styled.div`
 `;
 
 const MainArea = styled.div``;
-
-const FormArea = styled.div``;
 
 const Form = styled.div`
   margin-bottom: 30px;

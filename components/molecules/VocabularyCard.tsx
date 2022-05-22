@@ -32,7 +32,11 @@ export interface UpdatedVocab {
   translatedVocab: string;
 }
 
-const VocabularyCard: React.FC<PropsType> = (props) => {
+const VocabularyCard = ({
+  langWord,
+  deleteVocabulary,
+  fetchVocabularies,
+}: PropsType) => {
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [openSearchImageModal, setOpenSearchImageModal] =
     useState<boolean>(false);
@@ -52,7 +56,7 @@ const VocabularyCard: React.FC<PropsType> = (props) => {
       }
     );
     handleModal();
-    props.fetchVocabularies();
+    fetchVocabularies();
   };
 
   const editImage = async (vocabulary: Vocabulary, imageUrl: string) => {
@@ -65,7 +69,7 @@ const VocabularyCard: React.FC<PropsType> = (props) => {
       }
     );
     setOpenSearchImageModal(!openSearchImageModal);
-    props.fetchVocabularies();
+    fetchVocabularies();
   };
 
   return (
@@ -81,21 +85,21 @@ const VocabularyCard: React.FC<PropsType> = (props) => {
           component="img"
           height="140"
           width="240"
-          image={`${props.langWord.image}`}
+          image={`${langWord.image}`}
           alt=""
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            {props.langWord.word}
+            {langWord.word}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {props.langWord.translatedWord}
+            {langWord.translatedWord}
           </Typography>
         </CardContent>
         <IconButton
           name="delete"
           aria-label="delete"
-          onClick={() => props.deleteVocabulary(props.langWord.id)}
+          onClick={() => deleteVocabulary(langWord.id)}
         >
           <DeleteIcon />
         </IconButton>
@@ -105,14 +109,14 @@ const VocabularyCard: React.FC<PropsType> = (props) => {
       </Card>
       {openModal && (
         <EditVocabularyModal
-          vocabulary={props.langWord}
+          vocabulary={langWord}
           editVocabulary={editVocabulary}
           handleModal={handleModal}
         />
       )}
       {openSearchImageModal && (
         <SearchImageModal
-          vocabulary={props.langWord}
+          vocabulary={langWord}
           editImage={editImage}
           setImageUrl={setImageUrl}
           setOpenSearchImageModal={setOpenSearchImageModal}
