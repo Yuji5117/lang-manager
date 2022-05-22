@@ -2,20 +2,28 @@ import React from "react";
 import styled from "styled-components";
 
 interface PropsType {
+  vocabulary: any;
   photo: any;
   setImageUrl: any;
   setPhotos: any;
+  editImage: any;
 }
 
-const SearchImageResults = ({ photo, setImageUrl, setPhotos }: PropsType) => {
-  const onHandleClick = (e: any, imageUrl: string) => {
-    setImageUrl(imageUrl);
-    setPhotos([]);
-  };
+const SearchImageResults = ({
+  vocabulary,
+  photo,
+  setImageUrl,
+  setPhotos,
+  editImage,
+}: PropsType) => {
+  // const onHandleClick = (vocabId: number, imageUrl: string) => {
+  //   setImageUrl(imageUrl);
+  //   setPhotos([]);
+  // };
 
   return (
     <>
-      <button onClick={(e: any) => onHandleClick(e, photo.urls.regular)}>
+      <button onClick={(e) => editImage(vocabulary, photo.urls.regular)}>
         <Image
           src={photo.urls.regular}
           alt={photo.alt_description}

@@ -5,11 +5,18 @@ import SearchImageForm from "../molecules/SearchImageForm";
 import SearchImageResults from "../molecules/SearchImageResults";
 
 interface PropsType {
+  vocabulary: any;
   isActive: number;
   setImageUrl: any;
+  editImage: any;
 }
 
-const SearchImageModalBody = ({ isActive, setImageUrl }: PropsType) => {
+const SearchImageModalBody = ({
+  vocabulary,
+  isActive,
+  editImage,
+  setImageUrl,
+}: PropsType) => {
   const [photos, setPhotos] = useState<any>([]);
   let pageCount = 0;
   let tmpPhotos: any = [];
@@ -40,7 +47,7 @@ const SearchImageModalBody = ({ isActive, setImageUrl }: PropsType) => {
             type="file"
             accept="image/*"
             name="imageUrl"
-            // onChange={onHandleChange}
+            // onChange={editImage(vocabId)}
           />
         </>
       )}
@@ -51,9 +58,11 @@ const SearchImageModalBody = ({ isActive, setImageUrl }: PropsType) => {
             {photos.map((photo: any) => (
               <li key={photo.id}>
                 <SearchImageResults
+                  vocabulary={vocabulary}
                   photo={photo}
                   setPhotos={setPhotos}
                   setImageUrl={setImageUrl}
+                  editImage={editImage}
                 />
               </li>
             ))}

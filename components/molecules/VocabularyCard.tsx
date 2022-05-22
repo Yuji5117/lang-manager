@@ -11,6 +11,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditVocabularyModal from "../organisms/EditVocabularyModal";
 import axios from "axios";
+import SearchImageModal from "../organisms/SearchImageModal";
 
 interface Vocabulary {
   id: number | null;
@@ -33,6 +34,9 @@ export interface UpdatedVocab {
 
 const VocabularyCard: React.FC<PropsType> = (props) => {
   const [openModal, setOpenModal] = useState<boolean>(false);
+  const [openSearchImageModal, setOpenSearchImageModal] =
+    useState<boolean>(false);
+  const [imageUrl, setImageUrl] = useState<string>("");
 
   const handleModal = () => {
     setOpenModal(!openModal);
@@ -51,12 +55,32 @@ const VocabularyCard: React.FC<PropsType> = (props) => {
     props.fetchVocabularies();
   };
 
+  const editImage = async (vocabulary: Vocabulary, imageUrl: string) => {
+    await axios.put(
+      `${process.env.NEXT_PUBLIC_API_ENDPOINT}/vocabularies/${vocabulary.id}`,
+      {
+        word: vocabulary.word,
+        translatedWord: vocabulary.translatedWord,
+        image: imageUrl,
+      }
+    );
+    setOpenSearchImageModal(!openSearchImageModal);
+    props.fetchVocabularies();
+  };
+
   return (
     <Wrapper>
-      <Card sx={{ maxWidth: 345 }}>
+      <Card sx={{ width: 240 }}>
+        <button
+          type="button"
+          onClick={() => setOpenSearchImageModal(!openSearchImageModal)}
+        >
+          Change
+        </button>
         <CardMedia
           component="img"
           height="140"
+          width="240"
           image={`${props.langWord.image}`}
           alt=""
         />
@@ -84,6 +108,14 @@ const VocabularyCard: React.FC<PropsType> = (props) => {
           vocabulary={props.langWord}
           editVocabulary={editVocabulary}
           handleModal={handleModal}
+        />
+      )}
+      {openSearchImageModal && (
+        <SearchImageModal
+          vocabulary={props.langWord}
+          editImage={editImage}
+          setImageUrl={setImageUrl}
+          setOpenSearchImageModal={setOpenSearchImageModal}
         />
       )}
     </Wrapper>

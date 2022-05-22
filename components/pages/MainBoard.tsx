@@ -24,9 +24,8 @@ interface PropsType {
 }
 
 function MainBoard({ filterValue }: PropsType) {
-  const [openModal, setOpenModal] = useState<boolean>(false);
+  // const [openModal, setOpenModal] = useState<boolean>(false);
   const [langWords, setLangWords] = useState<Vocabulary[]>([]);
-  const [imageUrl, setImageUrl] = useState<string>("");
 
   useEffect(() => {
     fetchVocabularies();
@@ -43,10 +42,10 @@ function MainBoard({ filterValue }: PropsType) {
     setLangWords(res.data);
   };
 
-  const handleModal = () => {
-    setImageUrl("");
-    setOpenModal(!openModal);
-  };
+  // const handleModal = () => {
+  //   setImageUrl("");
+  //   setOpenModal(!openModal);
+  // };
 
   // モーダル用の実装
   // const addVocabulary: SubmitHandler<IFormInputs> = async (
@@ -88,14 +87,14 @@ function MainBoard({ filterValue }: PropsType) {
               Add Vocabulary
             </Button>
           </Form>
-          {openModal && (
+          {/* {openModal && (
             <AddVocabularyModal
               addVocabulary={addVocabulary}
               handleModal={handleModal}
               imageUrl={imageUrl}
               setImageUrl={setImageUrl}
             />
-          )}
+          )} */}
           <CardListWrapper>
             <CardList
               langWords={langWords}
@@ -104,8 +103,6 @@ function MainBoard({ filterValue }: PropsType) {
               filterValue={filterValue}
             />
           </CardListWrapper>
-
-          <SearchImageModal setImageUrl={setImageUrl} />
         </MainArea>
       </Container>
     </Wrapper>

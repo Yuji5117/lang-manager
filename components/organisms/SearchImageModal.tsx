@@ -4,17 +4,30 @@ import SearchImageModalBody from "./SearchImageModalBody";
 import SearchImageModalHeader from "./SearchImageModalHeader";
 
 interface PropsType {
+  vocabulary: any;
   setImageUrl: any;
+  editImage: any;
+  setOpenSearchImageModal: any;
 }
 
-const SearchImageModal = ({ setImageUrl }: PropsType) => {
+const SearchImageModal = ({
+  vocabulary,
+  setImageUrl,
+  editImage,
+  setOpenSearchImageModal,
+}: PropsType) => {
   const [isActive, setIsActive] = useState<number>(1);
 
   return (
-    <ModalWrapper>
-      <Modal>
+    <ModalWrapper onClick={() => setOpenSearchImageModal(false)}>
+      <Modal onClick={(e) => e.stopPropagation()}>
         <SearchImageModalHeader setIsActive={setIsActive} />
-        <SearchImageModalBody isActive={isActive} setImageUrl={setImageUrl} />
+        <SearchImageModalBody
+          vocabulary={vocabulary}
+          editImage={editImage}
+          isActive={isActive}
+          setImageUrl={setImageUrl}
+        />
       </Modal>
     </ModalWrapper>
   );
